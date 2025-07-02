@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Networked Creativity - Wave Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .wave-bg {
+            position: absolute;
+            top: -100px;
+            right: -200px;
+            width: 800px;
+            height: 800px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            opacity: 0.1;
+            filter: blur(100px);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #666 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-subtitle {
+            font-size: 22px;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            margin-top: 60px;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+        
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .about-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+        
+        /* Recent Projects */
+        .projects {
+            padding: 100px 0;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .project-card {
+            background: #f8f9fa;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-image {
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-content {
+            padding: 30px;
+        }
+        
+        .project-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .project-desc {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 40px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: #999;
+            text-decoration: none;
+            line-height: 1.8;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .contribute-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .contribute-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">MNC Research</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="wave-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Mobile Networked Creativity</h1>
+                <p class="hero-subtitle">
+                    Occurring between people and technology, Mobile Networked Creativity (MNC) highlights how unplanned uses of mobile technologies reveal creative practices, especially where people have limited access to technologies.
+                </p>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/Y04MeMhGDQY" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">About the Research</h2>
+                <p class="about-text">
+                    Creativity is a "hot" topic nowadays. An increasing number of trade publications aim at teaching people "how to be more creative." But this approach to creativity is embedded within capitalist modes of production and consumption: creativity is a catch all word for enticing people to work harder, beat the competition and be successful in the workplace. Creativity is characterized as something that is achieved by intense concentration, and contemplation—making it an intrinsic, individual activity for those with the time, money, and resources.
+                </p>
+                <p class="about-text">
+                    But creativity also happens outside of this traditional view. Creative practices emerge within situations of hardship, where there is a lack of time, money, and resources. These practices are deemed illegal or subversive and have frequently been described as appropriation, but not "creative". When slum dwellers in favelas or forced migrants in make-shift dwellings repurpose technology to improve their living conditions, they are not only appropriating technology: they are collectively recreating their context with technology and re-inventing themselves.
+                </p>
+                <p class="about-text">
+                    Mobile Networked Creativity is a creative process that relies on networked resources and mobility within an environment that connects people and technologies. For example, in the Zaatari refugee camp, where walking paths are unpaved and access to wheelchairs are limited, Safwan Harb looked to his surroundings to create an electric bike made from spare parts. In doing so, he wasn't just inventing a wheelchair-bike, but he was making mobility possible by re-creating himself alongside the mobile-wheelchair/bike. As such, Mobile Networked Creativity is an ongoing relationship among people, technologies, and spaces. It is a creative process that is not concerned with the creation of new things. Rather, it is about the mobility of and networking of resources that can improve lives and facilitate survival strategies.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Projects -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">Recent Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Zaatari Refugee Camp Study</h3>
+                        <p class="project-desc">Investigating how forced migrants repurpose technology to create mobility solutions and improve living conditions through networked creativity.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Technology Appropriation</h3>
+                        <p class="project-desc">Exploring how communities collectively recreate their context with technology, challenging traditional views of creativity and innovation.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Networked Resources</h3>
+                        <p class="project-desc">Documenting the ongoing relationships among people, technologies, and spaces in resource-constrained environments.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Mobile Networked Creativity</h3>
+                    <p>Exploring creative practices that emerge within situations of hardship and resource constraints, challenging traditional views of innovation.</p>
+                    <a href="#" class="contribute-btn">Contribute</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#">Research Papers</a>
+                    <a href="#">Case Studies</a>
+                    <a href="#">Methodology</a>
+                    <a href="#">Team</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <a href="#">research@mnc.org</a>
+                    <a href="#">Twitter: @MNCResearch</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Mobile Networked Creativity Research. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
